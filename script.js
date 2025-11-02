@@ -334,8 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carousel Functionality
     const carouselTrack = document.getElementById('carouselTrack');
     const projectCards = document.querySelectorAll('.project-card');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
     const carouselDots = document.getElementById('carouselDots');
     
     let currentIndex = 0;
@@ -436,8 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(autoAdvanceInterval);
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); stopAutoAdvance(); startAutoAdvance(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); stopAutoAdvance(); startAutoAdvance(); });
+    // Navigation is now swipe/drag only - no buttons
     
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
@@ -452,21 +449,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Touch swipe support for mobile
+    // Enhanced Swipe Support - Works on both Desktop (mouse drag) and Mobile (touch)
     let touchStartX = 0;
     let touchEndX = 0;
     let touchStartY = 0;
     let touchEndY = 0;
+    let isDragging = false;
+    let dragOffset = 0;
     const carouselContainer = document.getElementById('carouselContainer');
+    const activeCard = () => document.querySelector('.project-card.active');
 
     if (carouselContainer) {
+        // Touch events for mobile
         carouselContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
+            isDragging = true;
         }, { passive: true });
 
         carouselContainer.addEventListener('touchmove', (e) => {
-            // Prevent scrolling while swiping horizontally
+            if (!isDragging) return;
+            
             const currentX = e.changedTouches[0].screenX;
             const currentY = e.changedTouches[0].screenY;
             const diffX = Math.abs(currentX - touchStartX);
@@ -475,17 +478,99 @@ document.addEventListener('DOMContentLoaded', () => {
             // If horizontal swipe is more than vertical, prevent default scroll
             if (diffX > diffY && diffX > 10) {
                 e.preventDefault();
+                dragOffset = currentX - touchStartX;
+                
+                // Apply visual drag feedback
+                const card = activeCard();
+                if (card) {
+                    const maxDrag = 100;
+                    const dragPercent = Math.max(-1, Math.min(1, dragOffset / maxDrag));
+                    card.style.transform = `translate(calc(-50% + ${dragOffset * 0.5}px), -50%) scale(1)`;
+                    card.style.opacity = 1 - Math.abs(dragPercent) * 0.3;
+                }
             }
         }, { passive: false });
 
         carouselContainer.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            
             touchEndX = e.changedTouches[0].screenX;
             touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
+            
+            // Reset drag
+            isDragging = false;
+            dragOffset = 0;
+            const card = activeCard();
+            if (card) {
+                card.style.transform = '';
+                card.style.opacity = '';
+            }
         }, { passive: true });
 
+        // Mouse events for desktop drag
+        carouselContainer.addEventListener('mousedown', (e) => {
+            touchStartX = e.clientX;
+            touchStartY = e.clientY;
+            isDragging = true;
+            carouselContainer.style.cursor = 'grabbing';
+        }, { passive: true });
+
+        carouselContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const currentX = e.clientX;
+            const currentY = e.clientY;
+            const diffX = Math.abs(currentX - touchStartX);
+            const diffY = Math.abs(currentY - touchStartY);
+            
+            if (diffX > diffY && diffX > 10) {
+                dragOffset = currentX - touchStartX;
+                
+                // Apply visual drag feedback
+                const card = activeCard();
+                if (card) {
+                    const maxDrag = 150;
+                    const dragPercent = Math.max(-1, Math.min(1, dragOffset / maxDrag));
+                    card.style.transform = `translate(calc(-50% + ${dragOffset * 0.5}px), -50%) scale(1)`;
+                    card.style.opacity = 1 - Math.abs(dragPercent) * 0.3;
+                }
+            }
+        });
+
+        carouselContainer.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            
+            touchEndX = e.clientX;
+            touchEndY = e.clientY;
+            handleSwipe();
+            
+            // Reset drag
+            isDragging = false;
+            dragOffset = 0;
+            carouselContainer.style.cursor = 'grab';
+            const card = activeCard();
+            if (card) {
+                card.style.transform = '';
+                card.style.opacity = '';
+            }
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            if (isDragging) {
+                isDragging = false;
+                dragOffset = 0;
+                carouselContainer.style.cursor = 'grab';
+                const card = activeCard();
+                if (card) {
+                    card.style.transform = '';
+                    card.style.opacity = '';
+                }
+            }
+        });
+
         function handleSwipe() {
-            const swipeThreshold = 50;
+            const swipeThreshold = 80;
             const diffX = touchStartX - touchEndX;
             const diffY = Math.abs(touchStartY - touchEndY);
             
