@@ -1,218 +1,174 @@
-// Careers Page Specific JavaScript
+// Careers Page Specific JavaScript (module)
+// Uses Three.js (from CDN) to render a simple, relevant 3D briefcase in the canvas.
+import * as THREE from 'https://unpkg.com/three@0.152.2/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.152.2/examples/jsm/controls/OrbitControls.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Realistic Professional Handshake - Detailed and Proper
-    const careerCanvas = document.getElementById('careerVisualization');
-    
-    if (careerCanvas) {
-        const ctx = careerCanvas.getContext('2d');
-        let animationFrame;
-        let time = 0;
-        
-        function resizeCanvas() {
-            careerCanvas.width = careerCanvas.offsetWidth * 2;
-            careerCanvas.height = careerCanvas.offsetHeight * 2;
-            ctx.scale(2, 2);
+    const canvas = document.getElementById('careerVisualization');
+    const fallback = document.getElementById('careerFallback');
+
+    if (canvas) {
+    let renderer, scene, camera, controls, logo, globe, ring, pinTop, laptop;
+
+        try {
+            renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            console.log('careers.js: Created WebGL renderer.');
+        } catch (err) {
+            // If WebGL isn't available, show the fallback and don't crash.
+            console.warn('WebGL not available, 3D visualization disabled.', err);
+            renderer = null;
+            if (fallback) fallback.style.display = 'flex';
         }
-        resizeCanvas();
-        
-        const resizeObserver = new ResizeObserver(() => resizeCanvas());
-        resizeObserver.observe(careerCanvas);
-        
-        const width = () => careerCanvas.offsetWidth;
-        const height = () => careerCanvas.offsetHeight;
-        const centerX = () => width() / 2;
-        const centerY = () => height() / 2;
-        
-        function drawHand(x, y, isLeftHand, shakeOffset = 0) {
-            const baseX = x;
-            const baseY = y;
-            
-            // Wrist
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-            ctx.fillRect(baseX - 4, baseY - 8, 8, 12);
-            
-            // Palm
-            ctx.beginPath();
-            if (isLeftHand) {
-                ctx.ellipse(baseX - 6, baseY + 4, 8, 12, 0, 0, Math.PI * 2);
-            } else {
-                ctx.ellipse(baseX + 6, baseY + 4, 8, 12, 0, 0, Math.PI * 2);
-            }
-            ctx.fill();
-            
-            // Thumb
-            ctx.beginPath();
-            if (isLeftHand) {
-                ctx.ellipse(baseX - 10, baseY + 2, 4, 8, -0.5, 0, Math.PI * 2);
-            } else {
-                ctx.ellipse(baseX + 10, baseY + 2, 4, 8, 0.5, 0, Math.PI * 2);
-            }
-            ctx.fill();
-            
-            // Fingers (for handshake, fingers are together)
-            const fingerY = baseY + 12;
-            for (let i = 0; i < 4; i++) {
-                const fingerX = isLeftHand ? baseX - 6 + i * 3 : baseX + 6 - i * 3;
-                ctx.beginPath();
-                ctx.ellipse(fingerX, fingerY + 5 + shakeOffset, 2.5, 6, 0, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            
-            return { x: baseX, y: baseY + 8 + shakeOffset };
-        }
-        
-        function drawPersonSilhouette(x, y, facingRight) {
-            const personY = y;
-            
-            // Head
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-            ctx.beginPath();
-            ctx.arc(x, personY - 90, 22, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Neck
-            ctx.fillRect(x - 6, personY - 70, 12, 8);
-            
-            // Shoulders and torso
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
-            ctx.beginPath();
-            ctx.moveTo(x - 25, personY - 60);
-            ctx.lineTo(x + 25, personY - 60);
-            ctx.lineTo(x + 20, personY + 10);
-            ctx.lineTo(x - 20, personY + 10);
-            ctx.closePath();
-            ctx.fill();
-            
-            // Arms
-            const shoulderY = personY - 50;
-            const upperArmX = facingRight ? x + 20 : x - 20;
-            
-            // Upper arm
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-            ctx.lineWidth = 14;
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            ctx.moveTo(upperArmX, shoulderY);
-            const elbowX = facingRight ? x + 50 : x - 50;
-            const elbowY = personY - 25;
-            ctx.lineTo(elbowX, elbowY);
-            ctx.stroke();
-            
-            // Forearm extending for handshake
-            const forearmAngle = facingRight ? -0.15 : 0.15;
-            const forearmLength = 40;
-            const wristX = elbowX + Math.cos(forearmAngle) * forearmLength * (facingRight ? 1 : -1);
-            const wristY = elbowY + Math.sin(forearmAngle) * forearmLength;
-            
-            ctx.beginPath();
-            ctx.moveTo(elbowX, elbowY);
-            ctx.lineTo(wristX, wristY);
-            ctx.stroke();
-            
-            // Legs
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-            ctx.lineWidth = 12;
-            ctx.beginPath();
-            ctx.moveTo(x - 12, personY + 10);
-            ctx.lineTo(x - 12, personY + 75);
-            ctx.moveTo(x + 12, personY + 10);
-            ctx.lineTo(x + 12, personY + 75);
-            ctx.stroke();
-            
-            return { wristX, wristY, facingRight };
-        }
-        
-        function animate() {
-            time += 0.016;
-            ctx.clearRect(0, 0, width(), height());
-            
-            // Subtle handshake motion
-            const shakeOffset = Math.sin(time * 1.2) * 1.5;
-            
-            // Office desk
-            const deskY = centerY() + 45;
-            const deskWidth = width() * 0.5;
-            const deskX = centerX() - deskWidth / 2;
-            
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
-            ctx.fillRect(deskX, deskY, deskWidth, 6);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(deskX, deskY, deskWidth, 6);
-            
-            // Draw person on left (facing right)
-            const leftPersonX = centerX() - width() * 0.2;
-            const leftPerson = drawPersonSilhouette(leftPersonX, centerY() + 15, true);
-            
-            // Draw person on right (facing left)
-            const rightPersonX = centerX() + width() * 0.2;
-            const rightPerson = drawPersonSilhouette(rightPersonX, centerY() + 15, false);
-            
-            // Handshake point - where hands meet
-            const handshakeX = centerX();
-            const handshakeY = centerY() - 15 + shakeOffset;
-            
-            // Draw left person's hand (right hand)
-            const leftHandPos = drawHand(handshakeX - 12, handshakeY, false, shakeOffset);
-            
-            // Draw right person's hand (left hand)
-            const rightHandPos = drawHand(handshakeX + 12, handshakeY, true, shakeOffset);
-            
-            // Connection glow effect
-            const glowGradient = ctx.createRadialGradient(
-                handshakeX, handshakeY, 0,
-                handshakeX, handshakeY, 30
+
+        if (renderer) {
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            console.log('careers.js: renderer pixel ratio set, canvas size', canvas.clientWidth, canvas.clientHeight);
+
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+            // Move camera a bit closer for the new logo
+            camera.position.set(0, 12, 70);
+
+            // Lights - stronger and layered for better contrast on dark background
+            const ambient = new THREE.AmbientLight(0xffffff, 0.9);
+            scene.add(ambient);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            dirLight.position.set(40, 60, 50);
+            scene.add(dirLight);
+
+            // Rim / back light to give separation from dark background
+            const rimLight = new THREE.DirectionalLight(0x66ffd6, 0.25);
+            rimLight.position.set(-30, 10, -50);
+            scene.add(rimLight);
+
+            // Create a "Work From Anywhere" logo: globe + orbit ring + location pin + laptop accent
+            logo = new THREE.Group();
+
+            // Materials
+                const globeMat = new THREE.MeshStandardMaterial({ color: 0x0b1220, metalness: 0.05, roughness: 0.7, opacity: 0.98, transparent: true }); // near-black, slightly translucent
+                const gridMat = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 1, opacity: 0.9, transparent: true });
+                const accentMat = new THREE.MeshStandardMaterial({ color: 0x00ff88, metalness: 0.6, roughness: 0.2, emissive: 0x002211, emissiveIntensity: 0.3 });
+
+            // Globe
+            globe = new THREE.Mesh(new THREE.SphereGeometry(20, 32, 32), globeMat);
+            globe.position.set(0, 0, 0);
+            logo.add(globe);
+
+            // Wireframe grid over globe for stylized look
+                const geo = new THREE.SphereGeometry(20.05, 32, 32);
+                const grid = new THREE.LineSegments(new THREE.WireframeGeometry(geo), gridMat);
+                grid.material.opacity = 0.9;
+                logo.add(grid);
+
+            // Orbit ring (like connectivity / remote orbit)
+            ring = new THREE.Mesh(new THREE.TorusGeometry(28, 0.8, 8, 100), new THREE.MeshStandardMaterial({ color: 0x00ffcc, metalness: 0.2, roughness: 0.4, emissive: 0x002211, emissiveIntensity: 0.06 }));
+                ring = new THREE.Mesh(new THREE.TorusGeometry(28, 0.6, 6, 120), new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.1, roughness: 0.6, emissive: 0xffffff, emissiveIntensity: 0.02 }));
+            ring.rotation.x = Math.PI / 3.5;
+            ring.position.y = 2;
+            logo.add(ring);
+
+            // Location pin (accent) - simple sphere + cone
+            const pinGroup = new THREE.Group();
+                pinTop = new THREE.Mesh(new THREE.SphereGeometry(1.8, 12, 12), accentMat);
+                pinTop.position.set(0, 17, 6);
+                const pinStem = new THREE.Mesh(new THREE.ConeGeometry(1.2, 4, 12), accentMat);
+                pinStem.position.set(0, 14.5, 6);
+                pinStem.rotation.x = Math.PI;
+                pinGroup.add(pinTop, pinStem);
+                logo.add(pinGroup);
+
+            // Laptop accent - small box + screen floating near globe
+            laptop = new THREE.Group();
+                const base = new THREE.Mesh(new THREE.BoxGeometry(8, 0.6, 5), new THREE.MeshStandardMaterial({ color: 0x11121a, metalness: 0.1, roughness: 0.5 }));
+                const screen = new THREE.Mesh(new THREE.PlaneGeometry(8, 4.8), new THREE.MeshStandardMaterial({ color: 0x081428, emissive: 0x001122, emissiveIntensity: 0.35 }));
+                screen.position.set(0, 3.2, -1.2);
+                screen.rotation.x = -0.35;
+                laptop.add(base, screen);
+                laptop.position.set(-24, -2, 6);
+                laptop.scale.set(1.0, 1.0, 1.0);
+                logo.add(laptop);
+
+                // add a subtle hemisphere light to mimic the index page ambient
+                const hemi = new THREE.HemisphereLight(0xffffff, 0x000000, 0.25);
+                scene.add(hemi);
+
+            scene.add(logo);
+
+            // Floor (subtle)
+            // Floor (subtle) - slightly reflective to catch light
+            const floor = new THREE.Mesh(
+                new THREE.PlaneGeometry(400, 400),
+                new THREE.MeshStandardMaterial({ color: 0x050608, metalness: 0.1, roughness: 0.6, transparent: true, opacity: 0.06 })
             );
-            glowGradient.addColorStop(0, 'rgba(0, 255, 136, 0.3)');
-            glowGradient.addColorStop(0.6, 'rgba(0, 255, 136, 0.1)');
-            glowGradient.addColorStop(1, 'rgba(0, 255, 136, 0)');
-            
-            ctx.fillStyle = glowGradient;
-            ctx.beginPath();
-            ctx.arc(handshakeX, handshakeY, 30, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Subtle particles
-            for (let i = 0; i < 4; i++) {
-                const angle = (time * 0.8 + i * Math.PI / 2) % (Math.PI * 2);
-                const radius = 20 + Math.sin(time * 2 + i) * 3;
-                const px = handshakeX + Math.cos(angle) * radius;
-                const py = handshakeY + Math.sin(angle) * radius;
-                
-                const alpha = (Math.sin(time * 2 + i) + 1) / 2 * 0.5;
-                ctx.fillStyle = `rgba(0, 255, 136, ${alpha})`;
-                ctx.beginPath();
-                ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-                ctx.fill();
+            floor.rotation.x = -Math.PI / 2;
+            floor.position.y = -40;
+            scene.add(floor);
+
+            // Controls
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.08;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.5;
+            controls.enablePan = false;
+            controls.minDistance = 40;
+            controls.maxDistance = 220;
+
+            // Resize handling
+            const resize = () => {
+                const w = canvas.clientWidth || 300;
+                const h = canvas.clientHeight || 200;
+                renderer.setSize(w, h, false);
+                camera.aspect = w / h;
+                camera.updateProjectionMatrix();
+                console.log('careers.js: resized renderer to', w, h);
+                // hide fallback once renderer is sized
+                if (fallback) fallback.style.display = 'none';
+            };
+
+            // Use ResizeObserver for canvas size changes
+            const ro = new ResizeObserver(resize);
+            ro.observe(canvas);
+            resize();
+
+            // Animation
+            const clock = new THREE.Clock();
+
+            function animate() {
+                const t = clock.getElapsedTime();
+                // rotate the logo group and bob the globe slightly
+                if (logo) logo.rotation.y = t * 0.25;
+                if (globe) globe.rotation.y = t * 0.15;
+                if (ring) ring.rotation.z = t * 0.6;
+                // pin pulse
+                if (pinTop) {
+                    const pulse = 0.6 + Math.sin(t * 3) * 0.15;
+                    pinTop.scale.set(pulse, pulse, pulse);
+                }
+                // laptop subtle float
+                if (laptop) laptop.position.y = -2 + Math.sin(t * 1.4) * 0.6;
+
+                controls.update();
+                renderer.render(scene, camera);
+                // ensure fallback hidden after first render
+                if (fallback && fallback.style.display !== 'none') fallback.style.display = 'none';
+                requestAnimationFrame(animate);
             }
-            
-            animationFrame = requestAnimationFrame(animate);
+
+            animate();
         }
-        
-        // Optimized animation
-        let lastFrameTime = 0;
-        const targetFPS = 60;
-        const frameInterval = 1000 / targetFPS;
-        
-        function optimizedAnimate(timestamp) {
-            if (timestamp - lastFrameTime >= frameInterval) {
-                animate();
-                lastFrameTime = timestamp;
-            }
-            animationFrame = requestAnimationFrame(optimizedAnimate);
-        }
-        
-        optimizedAnimate(0);
     }
-    
-    // Email Signup Form
+
+    // Email Signup Form (preserve original behavior)
     const emailSignup = document.getElementById('emailSignup');
     if (emailSignup) {
         emailSignup.addEventListener('submit', (e) => {
             e.preventDefault();
             const emailInput = emailSignup.querySelector('.email-input');
             const email = emailInput.value;
-            
+
             // Simple validation
             if (email && email.includes('@')) {
                 // In a real application, this would send to a backend
@@ -221,13 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
-    // Scroll-triggered animations for careers page
+
+    // Scroll-triggered animations for careers page (keep original observer)
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -235,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, observerOptions);
-    
+
     const fadeElements = document.querySelectorAll('.fade-up');
     fadeElements.forEach(el => observer.observe(el));
 });

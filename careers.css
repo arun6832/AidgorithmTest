@@ -9,9 +9,9 @@
 /* Careers Hero */
 .careers-hero {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
     align-items: center;
     position: relative;
     padding: 8rem 2rem 4rem;
@@ -27,14 +27,34 @@
 
 /* Career Visualization */
 .career-visualization {
+    /* Place canvas responsively within the hero grid cell */
+    position: relative;
+    width: 100%;
+    height: 500px;
+    max-width: 600px;
+    margin: 0 auto;
+    /* Bring the canvas on top so the 3D scene is visible above page content */
+    z-index: 5;
+    pointer-events: none;
+    display: block;
+}
+
+/* Fallback visible label shown when 3D isn't available or for debugging */
+.career-fallback {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    z-index: 1;
+    z-index: 10000; /* above the canvas */
+    display: none; /* shown by careers.js when needed */
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    color: var(--accent-green);
+    font-weight: 600;
+    letter-spacing: -0.02em;
     pointer-events: none;
+    text-shadow: 0 6px 28px rgba(0,0,0,0.6);
 }
 
 /* Culture Section */

@@ -9,6 +9,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <!-- Import map so ES module imports that use bare specifiers (like 'three') resolve to CDN URLs -->
+        <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.152.2/build/three.module.js"
+            }
+        }
+        </script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -40,6 +48,8 @@
         </div>
         <div class="hero-3d">
             <canvas class="career-visualization" id="careerVisualization"></canvas>
+            <!-- Fallback visible text when 3D cannot render or for debugging -->
+            <div id="careerFallback" class="career-fallback" aria-hidden="true">Careers — Build with Us</div>
         </div>
     </section>
 
@@ -186,6 +196,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="careers.js"></script>
+    <script type="module" src="careers.js"></script>
 </body>
 </html>

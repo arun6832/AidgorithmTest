@@ -375,7 +375,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        updateDots();
+    // Update dots only if the container exists
+    if (carouselDots) updateDots();
         
         setTimeout(() => {
             isTransitioning = false;
@@ -392,6 +393,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateDots() {
+        if (!carouselDots) {
+            // Defensive: carouselDots not present on this page
+            console.warn('updateDots: #carouselDots element not found — skipping dots update.');
+            return;
+        }
+
         const dots = carouselDots.querySelectorAll('.carousel-dot');
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === currentIndex);
@@ -399,6 +406,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createDots() {
+        if (!carouselDots) {
+            console.warn('createDots: #carouselDots element not found — skipping dot creation.');
+            return;
+        }
+
         projectCards.forEach((_, i) => {
             const dot = document.createElement('button');
             dot.classList.add('carousel-dot');
