@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aidgorithm - Intelligence Engineered</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Aidgorithm</a>
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                <a href="#story">Story</a>
+                <a href="careers.html">Careers</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-wrapper">
+            <div class="hero-content">
+                <h1 class="hero-title">Intelligence Engineered</h1>
+                <p class="hero-subtitle">Transforming businesses through AI and machine learning</p>
+            </div>
+            <div class="hero-3d">
+                <canvas class="data-visualization" id="dataVisualization"></canvas>
+                <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <h2 class="section-title fade-up">Featured Projects</h2>
+            <div class="carousel-wrapper">
+                <div class="carousel-container" id="carouselContainer">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- GoldTrack Project -->
+                        <div class="project-card" data-index="0">
+                            <div class="card-content">
+                                <div class="card-number">01</div>
+                                <h3 class="card-title">GoldTrack</h3>
+                                <p class="card-description">AI-powered gold trading platform with real-time market analysis and predictive algorithms.</p>
+                                <div class="card-svg">
+                                    <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Animated gold bars -->
+                                        <rect class="gold-bar" x="30" y="80" width="20" height="40" fill="#FFD700" opacity="0.9">
+                                            <animate attributeName="height" values="40;60;40" dur="2s" repeatCount="indefinite"/>
+                                        </rect>
+                                        <rect class="gold-bar" x="60" y="60" width="20" height="60" fill="#FFD700" opacity="0.9">
+                                            <animate attributeName="height" values="60;80;60" dur="2.2s" repeatCount="indefinite"/>
+                                        </rect>
+                                        <rect class="gold-bar" x="90" y="50" width="20" height="70" fill="#FFD700" opacity="0.9">
+                                            <animate attributeName="height" values="70;90;70" dur="2.4s" repeatCount="indefinite"/>
+                                        </rect>
+                                        <rect class="gold-bar" x="120" y="70" width="20" height="50" fill="#FFD700" opacity="0.9">
+                                            <animate attributeName="height" values="50;70;50" dur="2.1s" repeatCount="indefinite"/>
+                                        </rect>
+                                        <!-- Arrows -->
+                                        <path class="arrow" d="M 140 100 L 170 85 M 170 85 L 165 78 M 170 85 L 165 92" stroke="#fff" stroke-width="2" fill="none">
+                                            <animateTransform attributeName="transform" type="translate" values="0,0; 10,0; 0,0" dur="1.5s" repeatCount="indefinite"/>
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Supply Chain Project -->
+                        <div class="project-card" data-index="1">
+                            <div class="card-content">
+                                <div class="card-number">02</div>
+                                <h3 class="card-title">Supply Chain AI</h3>
+                                <p class="card-description">Intelligent supply chain optimization with predictive logistics and real-time tracking.</p>
+                                <div class="card-svg">
+                                    <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Connected nodes -->
+                                        <circle class="node" cx="40" cy="50" r="8" fill="#fff">
+                                            <animate attributeName="r" values="8;10;8" dur="1.5s" repeatCount="indefinite"/>
+                                        </circle>
+                                        <circle class="node" cx="100" cy="40" r="8" fill="#fff">
+                                            <animate attributeName="r" values="8;10;8" dur="1.8s" repeatCount="indefinite"/>
+                                        </circle>
+                                        <circle class="node" cx="160" cy="60" r="8" fill="#fff">
+                                            <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+                                        </circle>
+                                        <circle class="node" cx="80" cy="100" r="8" fill="#fff">
+                                            <animate attributeName="r" values="8;10;8" dur="1.6s" repeatCount="indefinite"/>
+                                        </circle>
+                                        <circle class="node" cx="140" cy="110" r="8" fill="#fff">
+                                            <animate attributeName="r" values="8;10;8" dur="1.7s" repeatCount="indefinite"/>
+                                        </circle>
+                                        <!-- Connections -->
+                                        <line x1="40" y1="50" x2="100" y2="40" stroke="#666" stroke-width="1.5"/>
+                                        <line x1="100" y1="40" x2="160" y2="60" stroke="#666" stroke-width="1.5"/>
+                                        <line x1="100" y1="40" x2="80" y2="100" stroke="#666" stroke-width="1.5"/>
+                                        <line x1="80" y1="100" x2="140" y2="110" stroke="#666" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MedAI Project -->
+                        <div class="project-card" data-index="2">
+                            <div class="card-content">
+                                <div class="card-number">03</div>
+                                <h3 class="card-title">MedAI</h3>
+                                <p class="card-description">Healthcare diagnostics platform using deep learning for medical image analysis.</p>
+                                <div class="card-svg">
+                                    <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Pulsing medical cross -->
+                                        <rect x="85" y="40" width="30" height="8" fill="#fff" opacity="0.9">
+                                            <animate attributeName="opacity" values="0.9;0.5;0.9" dur="1.5s" repeatCount="indefinite"/>
+                                        </rect>
+                                        <rect x="96" y="29" width="8" height="30" fill="#fff" opacity="0.9">
+                                            <animate attributeName="opacity" values="0.9;0.5;0.9" dur="1.5s" repeatCount="indefinite"/>
+                                        </rect>
+                                        <!-- Pulsing circle -->
+                                        <circle cx="100" cy="44" r="35" stroke="#fff" stroke-width="1" fill="none" opacity="0.3">
+                                            <animate attributeName="r" values="35;50;35" dur="2s" repeatCount="indefinite"/>
+                                            <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+                                        </circle>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Smart Factory Project -->
+                        <div class="project-card" data-index="3">
+                            <div class="card-content">
+                                <div class="card-number">04</div>
+                                <h3 class="card-title">Smart Factory</h3>
+                                <p class="card-description">IoT-driven manufacturing intelligence with automated quality control and predictive maintenance.</p>
+                                <div class="card-svg">
+                                    <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Blinking indicators -->
+                                        <circle class="indicator" cx="50" cy="50" r="4" fill="#0f0">
+                                            <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+                                        </circle>
+                                        <circle class="indicator" cx="100" cy="60" r="4" fill="#0f0">
+                                            <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite" begin="0.2s"/>
+                                        </circle>
+                                        <circle class="indicator" cx="150" cy="55" r="4" fill="#0f0">
+                                            <animate attributeName="opacity" values="1;0.3;1" dur="1.1s" repeatCount="indefinite" begin="0.4s"/>
+                                        </circle>
+                                        <circle class="indicator" cx="70" cy="100" r="4" fill="#0f0">
+                                            <animate attributeName="opacity" values="1;0.3;1" dur="1.3s" repeatCount="indefinite" begin="0.1s"/>
+                                        </circle>
+                                        <circle class="indicator" cx="130" cy="110" r="4" fill="#0f0">
+                                            <animate attributeName="opacity" values="1;0.3;1" dur="1.15s" repeatCount="indefinite" begin="0.3s"/>
+                                        </circle>
+                                        <!-- Factory structure -->
+                                        <rect x="30" y="30" width="140" height="90" stroke="#666" stroke-width="2" fill="none" opacity="0.5"/>
+                                        <line x1="60" y1="30" x2="60" y2="120" stroke="#666" stroke-width="1" opacity="0.5"/>
+                                        <line x1="100" y1="30" x2="100" y2="120" stroke="#666" stroke-width="1" opacity="0.5"/>
+                                        <line x1="140" y1="30" x2="140" y2="120" stroke="#666" stroke-width="1" opacity="0.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" id="prevBtn" aria-label="Previous project">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-btn next" id="nextBtn" aria-label="Next project">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title fade-up">Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-up">
+                    <div class="service-number">01</div>
+                    <h3 class="service-title">Artificial Intelligence</h3>
+                    <p class="service-description">Custom AI solutions tailored to your business needs</p>
+                    <div class="service-arrow">→</div>
+                </div>
+                <div class="service-card fade-up">
+                    <div class="service-number">02</div>
+                    <h3 class="service-title">Machine Learning</h3>
+                    <p class="service-description">Advanced ML models for predictive analytics</p>
+                    <div class="service-arrow">→</div>
+                </div>
+                <div class="service-card fade-up">
+                    <div class="service-number">03</div>
+                    <h3 class="service-title">Automation</h3>
+                    <p class="service-description">Streamline operations with intelligent automation</p>
+                    <div class="service-arrow">→</div>
+                </div>
+                <div class="service-card fade-up">
+                    <div class="service-number">04</div>
+                    <h3 class="service-title">Data Analytics</h3>
+                    <p class="service-description">Transform data into actionable insights</p>
+                    <div class="service-arrow">→</div>
+                </div>
+                <div class="service-card fade-up">
+                    <div class="service-number">05</div>
+                    <h3 class="service-title">Software Engineering</h3>
+                    <p class="service-description">Enterprise-grade software development</p>
+                    <div class="service-arrow">→</div>
+                </div>
+                <div class="service-card fade-up">
+                    <div class="service-number">06</div>
+                    <h3 class="service-title">Strategy Consulting</h3>
+                    <p class="service-description">AI strategy and digital transformation guidance</p>
+                    <div class="service-arrow">→</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid fade-up">
+                <div class="stat-item">
+                    <div class="stat-value">2022</div>
+                    <div class="stat-label">Founded</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">25+</div>
+                    <div class="stat-label">Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Origin Story Section -->
+    <section class="story-section" id="story">
+        <div class="container">
+            <div class="story-layout">
+                <div class="story-sidebar">
+                    <div class="story-date">December 6, 2022</div>
+                </div>
+                <div class="story-content fade-up">
+                    <h2 class="story-title">Our Origin</h2>
+                    <div class="story-text">
+                        <p>It started with a moment of inspiration during the 2022 World Cup. Two engineers, sitting in a dimly lit room, watched as Brazil delivered a masterful performance, defeating South Korea 4-1. Beyond the football, something else was happening.</p>
+                        <p>In that moment, we realized that true intelligence—whether in sports, technology, or business—comes from understanding patterns, predicting outcomes, and making split-second decisions that matter. We saw parallels between the precision of a perfectly executed play and the potential of artificial intelligence to transform industries.</p>
+                        <p>That night, Aidgorithm was born. Not from a business plan or a market analysis, but from a shared vision: to engineer intelligence that helps businesses make better decisions, automate complex processes, and unlock new possibilities.</p>
+                        <p>Today, we continue to approach AI with the same clarity and precision we witnessed on that December night. Every algorithm we build, every solution we deploy, carries forward the belief that intelligence, when engineered thoughtfully, can change the game.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">Aidgorithm</div>
+                <div class="footer-links">
+                    <a href="#projects">Projects</a>
+                    <a href="#services">Services</a>
+                    <a href="#story">Story</a>
+                    <a href="careers.html">Careers</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aidgorithm. Intelligence Engineered.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

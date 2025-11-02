@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Aidgorithm</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="careers.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Aidgorithm</a>
+            <div class="nav-links">
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#story">Story</a>
+                <a href="careers.html">Careers</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="careers-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Build the Future of AI</h1>
+            <p class="hero-subtitle">Join a team that's engineering intelligence for tomorrow</p>
+        </div>
+        <div class="hero-3d">
+            <canvas class="career-visualization" id="careerVisualization"></canvas>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture-section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Our Culture</h2>
+                <p class="section-description">We're building a workplace where exceptional talent can do their best work.</p>
+            </div>
+            <div class="culture-grid fade-up">
+                <div class="culture-card">
+                    <div class="culture-number">01</div>
+                    <h3 class="culture-title">Work from Anywhere</h3>
+                    <p class="culture-description">Great ideas can come from anywhere. Our team spans multiple time zones, united by a shared mission to engineer intelligence.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-number">02</div>
+                    <h3 class="culture-title">Students First</h3>
+                    <p class="culture-description">We prioritize learning and growth. Whether you're fresh out of school or a seasoned professional, we invest in your development.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-number">03</div>
+                    <h3 class="culture-title">Innovation Driven</h3>
+                    <p class="culture-description">We're building cutting-edge solutions that push the boundaries of what's possible with AI and machine learning.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-number">04</div>
+                    <h3 class="culture-title">Collaborative</h3>
+                    <p class="culture-description">Great products come from great teams. We foster an environment where everyone's voice matters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title fade-up">Benefits & Perks</h2>
+            <div class="benefits-grid fade-up">
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Competitive Compensation</h3>
+                    <p class="benefit-description">Salary and equity packages that reflect your value</p>
+                </div>
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Health & Wellness</h3>
+                    <p class="benefit-description">Comprehensive health, dental, and vision insurance</p>
+                </div>
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Flexible Time Off</h3>
+                    <p class="benefit-description">Take the time you need to recharge and stay productive</p>
+                </div>
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Learning Budget</h3>
+                    <p class="benefit-description">Annual budget for courses, conferences, and professional development</p>
+                </div>
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Remote-First</h3>
+                    <p class="benefit-description">Work from anywhere with a home office setup stipend</p>
+                </div>
+                <div class="benefit-item">
+                    <h3 class="benefit-title">Latest Tools</h3>
+                    <p class="benefit-description">Top-of-the-line hardware and software to do your best work</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Positions Alert -->
+    <section class="openings-section">
+        <div class="container">
+            <div class="openings-content fade-up">
+                <h2 class="section-title">Open Positions</h2>
+                <div class="no-openings-message">
+                    <p class="message-text">We're not actively hiring at the moment, but we're always interested in connecting with exceptional talent.</p>
+                    <form class="email-signup" id="emailSignup">
+                        <div class="email-input-wrapper">
+                            <input type="email" placeholder="your.email@example.com" required class="email-input">
+                            <button type="submit" class="email-submit">Get Notified</button>
+                        </div>
+                    </form>
+                    <p class="message-note">We'll reach out when positions matching your profile become available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Roles Preview -->
+    <section class="future-roles-section">
+        <div class="container">
+            <h2 class="section-title fade-up">Future Roles</h2>
+            <p class="section-subtitle fade-up">Positions we anticipate opening in the coming months</p>
+            <div class="roles-grid fade-up">
+                <div class="role-card">
+                    <div class="role-category">Engineering</div>
+                    <h3 class="role-title">Senior ML Engineer</h3>
+                    <p class="role-description">Lead development of machine learning models and infrastructure</p>
+                </div>
+                <div class="role-card">
+                    <div class="role-category">Engineering</div>
+                    <h3 class="role-title">Full-Stack Developer</h3>
+                    <p class="role-description">Build scalable web applications and APIs</p>
+                </div>
+                <div class="role-card">
+                    <div class="role-category">Research</div>
+                    <h3 class="role-title">AI Researcher</h3>
+                    <p class="role-description">Push the boundaries of AI with cutting-edge research</p>
+                </div>
+                <div class="role-card">
+                    <div class="role-category">Design</div>
+                    <h3 class="role-title">Product Designer</h3>
+                    <p class="role-description">Design intuitive experiences for complex AI systems</p>
+                </div>
+                <div class="role-card">
+                    <div class="role-category">Business</div>
+                    <h3 class="role-title">Technical Sales Engineer</h3>
+                    <p class="role-description">Bridge the gap between our technology and client needs</p>
+                </div>
+                <div class="role-card">
+                    <div class="role-category">Operations</div>
+                    <h3 class="role-title">DevOps Engineer</h3>
+                    <p class="role-description">Ensure our infrastructure scales reliably and securely</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">Aidgorithm</div>
+                <div class="footer-links">
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#services">Services</a>
+                    <a href="index.html#story">Story</a>
+                    <a href="careers.html">Careers</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aidgorithm. Intelligence Engineered.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="careers.js"></script>
+</body>
+</html>
