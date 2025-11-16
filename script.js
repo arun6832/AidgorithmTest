@@ -81,6 +81,37 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (dataCanvas) {
         const ctx = dataCanvas.getContext('2d');
+
+        // Choose drawing colors based on CSS theme variables so visuals remain visible
+        const css = getComputedStyle(document.documentElement);
+        const cssTextStrong = css.getPropertyValue('--text-strong').trim() || '#0b0b0b';
+
+        function hexToRgb(hex) {
+            if (!hex) return { r: 11, g: 11, b: 11 };
+            hex = hex.replace('#', '').trim();
+            if (hex.length === 3) {
+                hex = hex.split('').map(h => h + h).join('');
+            }
+            const bigint = parseInt(hex, 16);
+            return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+        }
+
+        function cssColorToRgb(cssColor) {
+            if (!cssColor) return hexToRgb('#0b0b0b');
+            cssColor = cssColor.trim();
+            if (cssColor.startsWith('rgb')) {
+                const parts = cssColor.replace(/rgba?\(|\)|\s/g, '').split(',');
+                return { r: parseInt(parts[0]), g: parseInt(parts[1]), b: parseInt(parts[2]) };
+            }
+            if (cssColor.startsWith('#')) return hexToRgb(cssColor);
+            // fallback
+            return hexToRgb('#0b0b0b');
+        }
+
+        const baseRgb = cssColorToRgb(cssTextStrong);
+        const lineColor = `rgba(${baseRgb.r}, ${baseRgb.g}, ${baseRgb.b}, 0.15)`;
+        const nodeColor = (a) => `rgba(${baseRgb.r}, ${baseRgb.g}, ${baseRgb.b}, ${a})`;
+        const glowColor = (a) => `rgba(${baseRgb.r}, ${baseRgb.g}, ${baseRgb.b}, ${a})`;
         let animationId;
         let rotationY = 0;
         let rotationX = 0.3;
@@ -176,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             projectedNodes.sort((a, b) => b.z - a.z);
             
             // Draw connections
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.strokeStyle = lineColor;
             ctx.lineWidth = 1;
             
             projectedNodes.forEach((projNode, i) => {
@@ -208,15 +239,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     const px = startProj.x + (endProj.x - startProj.x) * particle.progress;
                     const py = startProj.y + (endProj.y - startProj.y) * particle.progress;
                     const alpha = Math.sin(particle.progress * Math.PI);
-                    
+
                     ctx.beginPath();
                     ctx.arc(px, py, 3, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.8})`;
+                    ctx.fillStyle = nodeColor(alpha * 0.8);
                     ctx.fill();
-                    
+
                     // Glow effect
                     ctx.shadowBlur = 8;
-                    ctx.shadowColor = `rgba(255, 255, 255, ${alpha * 0.5})`;
+                    ctx.shadowColor = glowColor(alpha * 0.5);
                     ctx.fill();
                     ctx.shadowBlur = 0;
                 }
@@ -233,9 +264,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         projNode.x, projNode.y, 0,
                         projNode.x, projNode.y, size * 2
                     );
-                    gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.6})`);
-                    gradient.addColorStop(0.5, `rgba(255, 255, 255, ${alpha * 0.2})`);
-                    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                    gradient.addColorStop(0, nodeColor(alpha * 0.6));
+                    gradient.addColorStop(0.5, nodeColor(alpha * 0.2));
+                    gradient.addColorStop(1, nodeColor(0));
                     
                     ctx.fillStyle = gradient;
                     ctx.beginPath();
@@ -243,13 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     ctx.fill();
                     
                     // Node
-                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.9})`;
+                    ctx.fillStyle = nodeColor(alpha * 0.9);
                     ctx.beginPath();
                     ctx.arc(projNode.x, projNode.y, size, 0, Math.PI * 2);
                     ctx.fill();
                     
                     // Center dot
-                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                    ctx.fillStyle = nodeColor(alpha);
                     ctx.beginPath();
                     ctx.arc(projNode.x, projNode.y, size * 0.4, 0, Math.PI * 2);
                     ctx.fill();
@@ -268,6 +299,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
         const particles = [];
         const particleCount = 50;
+
+        // Determine particle color based on theme
+        const css2 = getComputedStyle(document.documentElement);
+        const cssTextStrong2 = css2.getPropertyValue('--text-strong').trim() || '#0b0b0b';
+
+        function hexToRgb(hex) {
+            if (!hex) return { r: 11, g: 11, b: 11 };
+            hex = hex.replace('#', '').trim();
+            if (hex.length === 3) {
+                hex = hex.split('').map(h => h + h).join('');
+            }
+            const bigint = parseInt(hex, 16);
+            return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+        }
+
+        function cssColorToRgb(cssColor) {
+            if (!cssColor) return hexToRgb('#0b0b0b');
+            cssColor = cssColor.trim();
+            if (cssColor.startsWith('rgb')) {
+                const parts = cssColor.replace(/rgba?\(|\)|\s/g, '').split(',');
+                return { r: parseInt(parts[0]), g: parseInt(parts[1]), b: parseInt(parts[2]) };
+            }
+            if (cssColor.startsWith('#')) return hexToRgb(cssColor);
+            return hexToRgb('#0b0b0b');
+        }
+
+        const baseRgbParticles = cssColorToRgb(cssTextStrong2);
+        const particleFill = (a) => `rgba(${baseRgbParticles.r}, ${baseRgbParticles.g}, ${baseRgbParticles.b}, ${a})`;
 
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
@@ -309,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ctx.beginPath();
                 ctx.arc(x, y, size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.5})`;
+                    ctx.fillStyle = particleFill(alpha * 0.5);
                 ctx.fill();
             }
         }

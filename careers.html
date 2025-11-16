@@ -9,14 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <!-- Import map so ES module imports that use bare specifiers (like 'three') resolve to CDN URLs -->
-        <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.152.2/build/three.module.js"
-            }
-        }
-        </script>
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -27,10 +19,10 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">Aidgorithm</a>
             <div class="nav-links">
-                <a href="index.html#projects">Projects</a>
-                <a href="index.html#services">Services</a>
-                <a href="index.html#story">Story</a>
-                <a href="careers.html">Careers</a>
+                <a href="index.html">Home</a>
+                <a href="index.html#projects">Products</a>
+                <a href="index.html#story">About</a>
+                <a href="#contact">Contact</a>
             </div>
             <button class="nav-toggle" aria-label="Toggle navigation">
                 <span></span>
@@ -48,7 +40,6 @@
         </div>
         <div class="hero-3d">
             <canvas class="career-visualization" id="careerVisualization"></canvas>
-            <!-- Fallback visible text when 3D cannot render or for debugging -->
             <div id="careerFallback" class="career-fallback" aria-hidden="true">Careers — Build with Us</div>
         </div>
     </section>
@@ -58,28 +49,108 @@
         <div class="container">
             <div class="section-header fade-up">
                 <h2 class="section-title">Our Culture</h2>
-                <p class="section-description">We're building a workplace where exceptional talent can do their best work.</p>
+                <p class="section-description">We're building a workplace where exceptional talent can do their best work. Our culture is built on innovation, collaboration, and a shared commitment to pushing the boundaries of what's possible with artificial intelligence.</p>
             </div>
             <div class="culture-grid fade-up">
                 <div class="culture-card">
                     <div class="culture-number">01</div>
                     <h3 class="culture-title">Work from Anywhere</h3>
-                    <p class="culture-description">Great ideas can come from anywhere. Our team spans multiple time zones, united by a shared mission to engineer intelligence.</p>
+                    <p class="culture-description">Great ideas can come from anywhere. Our fully remote team spans multiple time zones and continents, united by a shared mission to engineer intelligence. Whether you're working from a café in Paris or your home office in Tokyo, you'll have the flexibility to create your ideal work environment.</p>
                 </div>
                 <div class="culture-card">
                     <div class="culture-number">02</div>
                     <h3 class="culture-title">Students First</h3>
-                    <p class="culture-description">We prioritize learning and growth. Whether you're fresh out of school or a seasoned professional, we invest in your development.</p>
+                    <p class="culture-description">We prioritize learning and growth at every stage of your career. Whether you're fresh out of school or a seasoned professional looking to expand into AI, we invest heavily in your development through mentorship programs, dedicated learning time, and access to cutting-edge research and tools.</p>
                 </div>
                 <div class="culture-card">
                     <div class="culture-number">03</div>
                     <h3 class="culture-title">Innovation Driven</h3>
-                    <p class="culture-description">We're building cutting-edge solutions that push the boundaries of what's possible with AI and machine learning.</p>
+                    <p class="culture-description">We're building cutting-edge solutions that push the boundaries of what's possible with AI and machine learning. Our team works on real-world problems that impact millions, from natural language processing to computer vision, giving you the opportunity to work on meaningful projects that shape the future.</p>
                 </div>
                 <div class="culture-card">
                     <div class="culture-number">04</div>
-                    <h3 class="culture-title">Collaborative</h3>
-                    <p class="culture-description">Great products come from great teams. We foster an environment where everyone's voice matters.</p>
+                    <h3 class="culture-title">Collaborative Spirit</h3>
+                    <p class="culture-description">Great products come from great teams. We foster an environment where everyone's voice matters, from junior developers to senior architects. Our flat hierarchy encourages open communication, knowledge sharing, and cross-functional collaboration that brings out the best in everyone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">What Drives Us</h2>
+                <p class="section-description">Our core values guide every decision we make and every line of code we write.</p>
+            </div>
+            <div class="values-content fade-up">
+                <div class="value-item">
+                    <svg class="value-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="targetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="35" fill="none" stroke="url(#targetGrad)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="25" fill="none" stroke="url(#targetGrad)" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="15" fill="none" stroke="url(#targetGrad)" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="4" fill="url(#targetGrad)"/>
+                    </svg>
+                    <h3 class="value-title">Excellence by Default</h3>
+                    <p class="value-description">We don't settle for "good enough." Every feature, every algorithm, and every user interaction is crafted with meticulous attention to detail. Our commitment to excellence means we build products that not only work but delight.</p>
+                </div>
+                <div class="value-item">
+                    <svg class="value-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="rocketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M50 10 L60 40 L70 35 L55 50 L60 70 L50 60 L40 70 L45 50 L30 35 L40 40 Z" fill="url(#rocketGrad)"/>
+                        <ellipse cx="35" cy="75" rx="8" ry="12" fill="url(#rocketGrad)" opacity="0.6"/>
+                        <ellipse cx="65" cy="75" rx="8" ry="12" fill="url(#rocketGrad)" opacity="0.6"/>
+                        <circle cx="50" cy="30" r="3" fill="#000"/>
+                    </svg>
+                    <h3 class="value-title">Ship Fast, Learn Faster</h3>
+                    <p class="value-description">We believe in rapid iteration and continuous improvement. By shipping quickly and gathering feedback, we learn what works and what doesn't, allowing us to pivot and improve at unprecedented speed.</p>
+                </div>
+                <div class="value-item">
+                    <svg class="value-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="windowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="20" y="20" width="60" height="60" rx="4" fill="none" stroke="url(#windowGrad)" stroke-width="3"/>
+                        <line x1="50" y1="20" x2="50" y2="80" stroke="url(#windowGrad)" stroke-width="2"/>
+                        <line x1="20" y1="50" x2="80" y2="50" stroke="url(#windowGrad)" stroke-width="2"/>
+                        <circle cx="35" cy="35" r="6" fill="url(#windowGrad)" opacity="0.3"/>
+                        <circle cx="65" cy="35" r="6" fill="url(#windowGrad)" opacity="0.3"/>
+                        <circle cx="35" cy="65" r="6" fill="url(#windowGrad)" opacity="0.3"/>
+                        <circle cx="65" cy="65" r="6" fill="url(#windowGrad)" opacity="0.3"/>
+                    </svg>
+                    <h3 class="value-title">Transparency First</h3>
+                    <p class="value-description">From our codebase to our decision-making process, we practice radical transparency. Every team member has visibility into company metrics, strategic decisions, and the reasoning behind them. Trust is built through openness.</p>
+                </div>
+                <div class="value-item">
+                    <svg class="value-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="growthGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M50 75 Q45 60, 40 50 Q35 35, 35 20" fill="none" stroke="url(#growthGrad)" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="35" cy="20" r="4" fill="url(#growthGrad)"/>
+                        <path d="M30 30 L40 28 L38 38 Z" fill="url(#growthGrad)"/>
+                        <path d="M50 75 Q55 60, 60 50 Q65 35, 65 20" fill="none" stroke="url(#growthGrad)" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+                        <circle cx="50" cy="75" r="5" fill="url(#growthGrad)"/>
+                    </svg>
+                    <h3 class="value-title">Sustainable Growth</h3>
+                    <p class="value-description">We're building for the long term. This means sustainable work practices, investing in our team's wellbeing, and making decisions that balance short-term gains with long-term stability and impact.</p>
                 </div>
             </div>
         </div>
@@ -88,31 +159,180 @@
     <!-- Benefits Section -->
     <section class="benefits-section">
         <div class="container">
-            <h2 class="section-title fade-up">Benefits & Perks</h2>
-            <div class="benefits-grid fade-up">
-                <div class="benefit-item">
-                    <h3 class="benefit-title">Competitive Compensation</h3>
-                    <p class="benefit-description">Salary and equity packages that reflect your value</p>
+            <div class="section-header fade-up">
+                <h2 class="section-title">Benefits & Perks</h2>
+                <p class="section-description">We offer comprehensive benefits designed to support your health, growth, and work-life balance.</p>
+            </div>
+            
+            <!-- Benefits Carousel -->
+            <div class="benefits-carousel-wrapper fade-up">
+                <div class="benefits-carousel" id="benefitsCarousel">
+                    <div class="benefit-slide active">
+                        <svg class="benefit-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="moneyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="50" cy="50" r="30" fill="none" stroke="url(#moneyGrad)" stroke-width="4"/>
+                            <text x="50" y="62" font-size="40" fill="url(#moneyGrad)" text-anchor="middle" font-weight="bold">$</text>
+                        </svg>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Competitive Compensation</h3>
+                            <p class="benefit-description">Industry-leading salary packages with equity options that give you a real stake in our success. Regular performance reviews ensure your compensation grows with your contributions.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-slide">
+                        <svg class="benefit-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="healthGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M50 80 L30 60 Q20 50, 20 38 Q20 25, 30 20 Q40 15, 50 25 Q60 15, 70 20 Q80 25, 80 38 Q80 50, 70 60 Z" fill="url(#healthGrad)"/>
+                            <path d="M50 40 L50 55 M42 47 L58 47" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Health & Wellness</h3>
+                            <p class="benefit-description">Comprehensive medical, dental, and vision insurance for you and your family. Plus mental health support, gym memberships, and wellness stipends to keep you at your best.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-slide">
+                        <svg class="benefit-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="vacationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <ellipse cx="50" cy="70" rx="35" ry="10" fill="url(#vacationGrad)" opacity="0.3"/>
+                            <path d="M30 70 L35 30 Q37 20, 45 20 L55 20 Q63 20, 65 30 L70 70" fill="none" stroke="url(#vacationGrad)" stroke-width="3"/>
+                            <rect x="35" y="20" width="30" height="8" rx="2" fill="url(#vacationGrad)"/>
+                            <circle cx="50" cy="50" r="8" fill="url(#vacationGrad)" opacity="0.5"/>
+                        </svg>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Unlimited Time Off</h3>
+                            <p class="benefit-description">Take the time you need to recharge, travel, or spend with loved ones. We trust you to manage your time and encourage everyone to take at least 3 weeks off annually.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-slide">
+                        <svg class="benefit-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="bookGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M25 20 L25 80 L50 70 L75 80 L75 20 Z" fill="none" stroke="url(#bookGrad)" stroke-width="3"/>
+                            <line x1="50" y1="20" x2="50" y2="70" stroke="url(#bookGrad)" stroke-width="2"/>
+                            <path d="M35 35 L45 35 M35 45 L45 45 M35 55 L45 55" stroke="url(#bookGrad)" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M55 35 L65 35 M55 45 L65 45 M55 55 L65 55" stroke="url(#bookGrad)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Learning Budget</h3>
+                            <p class="benefit-description">$3,000 annual budget for courses, conferences, books, and professional development. Attend AI conferences worldwide, take online courses, or pursue certifications.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-slide">
+                        <svg class="benefit-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="homeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M50 20 L80 45 L75 45 L75 75 L55 75 L55 55 L45 55 L45 75 L25 75 L25 45 L20 45 Z" fill="url(#homeGrad)"/>
+                            <rect x="45" y="55" width="10" height="20" fill="#000" opacity="0.3"/>
+                        </svg>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Remote-First Setup</h3>
+                            <p class="benefit-description">$2,000 home office stipend to create your perfect workspace. High-speed internet reimbursement, ergonomic furniture, and co-working space memberships available globally.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-slide">
+                        <svg class="benefit-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="laptopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="25" y="30" width="50" height="35" rx="2" fill="none" stroke="url(#laptopGrad)" stroke-width="3"/>
+                            <path d="M20 65 L80 65 L85 75 L15 75 Z" fill="url(#laptopGrad)"/>
+                            <circle cx="50" cy="47" r="8" fill="url(#laptopGrad)" opacity="0.3"/>
+                        </svg>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Latest Technology</h3>
+                            <p class="benefit-description">Top-of-the-line MacBook Pro or custom Linux workstation, multiple monitors, premium software licenses, and cloud credits. Choose the tools that make you most productive.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-slide">
+                        <svg class="benefit-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="familyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="35" cy="35" r="12" fill="url(#familyGrad)"/>
+                            <path d="M35 47 Q25 52, 20 65 L50 65 Q45 52, 35 47" fill="url(#familyGrad)"/>
+                            <circle cx="65" cy="40" r="10" fill="url(#familyGrad)" opacity="0.7"/>
+                            <path d="M65 50 Q58 54, 55 65 L75 65 Q72 54, 65 50" fill="url(#familyGrad)" opacity="0.7"/>
+                        </svg>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Parental Leave</h3>
+                            <p class="benefit-description">16 weeks fully paid parental leave for all parents, regardless of gender. Plus flexible return-to-work options and ongoing support to help balance family and career.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-slide">
+                        <svg class="benefit-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="teamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d47a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="30" cy="35" r="10" fill="url(#teamGrad)"/>
+                            <circle cx="50" cy="30" r="12" fill="url(#teamGrad)"/>
+                            <circle cx="70" cy="35" r="10" fill="url(#teamGrad)"/>
+                            <path d="M30 45 Q25 50, 22 65 L38 65 Q35 50, 30 45" fill="url(#teamGrad)" opacity="0.8"/>
+                            <path d="M50 42 Q43 48, 40 65 L60 65 Q57 48, 50 42" fill="url(#teamGrad)"/>
+                            <path d="M70 45 Q65 50, 62 65 L78 65 Q75 50, 70 45" fill="url(#teamGrad)" opacity="0.8"/>
+                        </svg>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Team Gatherings</h3>
+                            <p class="benefit-description">Annual company retreats in exciting locations, quarterly team offsites, and regular virtual social events. Build genuine connections with teammates from around the world.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="benefit-item">
-                    <h3 class="benefit-title">Health & Wellness</h3>
-                    <p class="benefit-description">Comprehensive health, dental, and vision insurance</p>
+
+                <!-- Carousel Controls -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn carousel-prev" aria-label="Previous benefit">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="carousel-dots"></div>
+                    <button class="carousel-btn carousel-next" aria-label="Next benefit">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
-                <div class="benefit-item">
-                    <h3 class="benefit-title">Flexible Time Off</h3>
-                    <p class="benefit-description">Take the time you need to recharge and stay productive</p>
-                </div>
-                <div class="benefit-item">
-                    <h3 class="benefit-title">Learning Budget</h3>
-                    <p class="benefit-description">Annual budget for courses, conferences, and professional development</p>
-                </div>
-                <div class="benefit-item">
-                    <h3 class="benefit-title">Remote-First</h3>
-                    <p class="benefit-description">Work from anywhere with a home office setup stipend</p>
-                </div>
-                <div class="benefit-item">
-                    <h3 class="benefit-title">Latest Tools</h3>
-                    <p class="benefit-description">Top-of-the-line hardware and software to do your best work</p>
+
+                <!-- Progress Bar -->
+                <div class="carousel-progress">
+                    <div class="carousel-progress-bar"></div>
                 </div>
             </div>
         </div>
@@ -124,15 +344,71 @@
             <div class="openings-content fade-up">
                 <h2 class="section-title">Open Positions</h2>
                 <div class="no-openings-message">
-                    <p class="message-text">We're not actively hiring at the moment, but we're always interested in connecting with exceptional talent.</p>
+                    <p class="message-text">We're not actively hiring at the moment, but we're always interested in connecting with exceptional talent who share our passion for building intelligent systems that make a difference.</p>
+                    <p class="message-subtext">Join our talent network to be the first to know when new opportunities arise. We're looking for engineers, researchers, designers, and problem-solvers who are excited about the future of AI.</p>
                     <form class="email-signup" id="emailSignup">
                         <div class="email-input-wrapper">
-                            <input type="email" placeholder="your.email@example.com" required class="email-input">
+                            <input type="email" placeholder="your.email@example.com" required class="email-input" aria-label="Email address">
                             <button type="submit" class="email-submit">Get Notified</button>
                         </div>
                     </form>
-                    <p class="message-note">We'll reach out when positions matching your profile become available.</p>
+                    <p class="message-note">We respect your privacy. You'll only hear from us when we have roles that match your interests.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title">Our Interview Process</h2>
+                <p class="section-description">We believe in a transparent, respectful hiring process that values your time and showcases your skills.</p>
+            </div>
+            <div class="process-timeline fade-up">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Initial Chat</h3>
+                        <p class="step-description">A casual 30-minute conversation to learn about your background, interests, and what you're looking for in your next role. This is as much for you to learn about us as it is for us to learn about you.</p>
+                        <span class="step-duration">30 minutes</span>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Technical Assessment</h3>
+                        <p class="step-description">A take-home project or live coding session that reflects real work you'd do here. We provide clear requirements and are available for questions. You choose the format that lets you show your best work.</p>
+                        <span class="step-duration">2-4 hours</span>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Team Interviews</h3>
+                        <p class="step-description">Meet with team members you'd work with directly. We focus on problem-solving, collaboration, and cultural fit. Expect technical deep-dives and conversations about how you approach challenges.</p>
+                        <span class="step-duration">3-4 hours</span>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Leadership Chat</h3>
+                        <p class="step-description">A final conversation with our leadership team to discuss vision, values, and how you see yourself growing with Aidgorithm. Ask us anything about the company's direction and future.</p>
+                        <span class="step-duration">45 minutes</span>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Offer & Onboarding</h3>
+                        <p class="step-description">If we're a mutual fit, you'll receive a comprehensive offer with all details clearly outlined. We'll work with you on timing and answer any questions to make your decision easier.</p>
+                        <span class="step-duration">1-2 days</span>
+                    </div>
+                </div>
+            </div>
+            <div class="process-note fade-up">
+                <p>The entire process typically takes 2-3 weeks. We provide detailed feedback at every stage and are happy to accommodate your schedule.</p>
             </div>
         </div>
     </section>
@@ -141,37 +417,67 @@
     <section class="future-roles-section">
         <div class="container">
             <h2 class="section-title fade-up">Future Roles</h2>
-            <p class="section-subtitle fade-up">Positions we anticipate opening in the coming months</p>
+            <p class="section-subtitle fade-up">Positions we anticipate opening as we scale our AI capabilities and expand our product offerings</p>
             <div class="roles-grid fade-up">
                 <div class="role-card">
                     <div class="role-category">Engineering</div>
                     <h3 class="role-title">Senior ML Engineer</h3>
-                    <p class="role-description">Lead development of machine learning models and infrastructure</p>
+                    <p class="role-description">Lead the development of production-grade machine learning models and infrastructure. Work with PyTorch, TensorFlow, and cutting-edge LLMs to build systems that scale to millions of users.</p>
+                    <div class="role-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">ML</span>
+                        <span class="skill-tag">PyTorch</span>
+                    </div>
                 </div>
                 <div class="role-card">
                     <div class="role-category">Engineering</div>
                     <h3 class="role-title">Full-Stack Developer</h3>
-                    <p class="role-description">Build scalable web applications and APIs</p>
+                    <p class="role-description">Build scalable web applications and APIs that power our AI products. Work across the stack with React, Node.js, and modern cloud infrastructure to create seamless user experiences.</p>
+                    <div class="role-skills">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
                 </div>
                 <div class="role-card">
                     <div class="role-category">Research</div>
                     <h3 class="role-title">AI Researcher</h3>
-                    <p class="role-description">Push the boundaries of AI with cutting-edge research</p>
+                    <p class="role-description">Push the boundaries of AI with cutting-edge research in areas like natural language understanding, computer vision, and reinforcement learning. Publish papers and implement novel algorithms that advance the field.</p>
+                    <div class="role-skills">
+                        <span class="skill-tag">Research</span>
+                        <span class="skill-tag">PhD</span>
+                        <span class="skill-tag">Papers</span>
+                    </div>
                 </div>
                 <div class="role-card">
                     <div class="role-category">Design</div>
                     <h3 class="role-title">Product Designer</h3>
-                    <p class="role-description">Design intuitive experiences for complex AI systems</p>
+                    <p class="role-description">Design intuitive, delightful experiences for complex AI systems. Bridge the gap between advanced technology and human needs through thoughtful UX research, prototyping, and visual design.</p>
+                    <div class="role-skills">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">UX</span>
+                        <span class="skill-tag">Prototyping</span>
+                    </div>
                 </div>
                 <div class="role-card">
                     <div class="role-category">Business</div>
                     <h3 class="role-title">Technical Sales Engineer</h3>
-                    <p class="role-description">Bridge the gap between our technology and client needs</p>
+                    <p class="role-description">Bridge the gap between our technology and client needs. Demonstrate our AI capabilities, architect custom solutions, and guide enterprises through technical integration and deployment.</p>
+                    <div class="role-skills">
+                        <span class="skill-tag">Sales</span>
+                        <span class="skill-tag">Technical</span>
+                        <span class="skill-tag">B2B</span>
+                    </div>
                 </div>
                 <div class="role-card">
                     <div class="role-category">Operations</div>
                     <h3 class="role-title">DevOps Engineer</h3>
-                    <p class="role-description">Ensure our infrastructure scales reliably and securely</p>
+                    <p class="role-description">Ensure our infrastructure scales reliably and securely. Build CI/CD pipelines, manage Kubernetes clusters, and implement monitoring solutions that keep our AI services running 24/7.</p>
+                    <div class="role-skills">
+                        <span class="skill-tag">K8s</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -196,6 +502,410 @@
     </footer>
 
     <script src="script.js"></script>
-    <script type="module" src="careers.js"></script>
+    
+    <!-- Load Three.js from CDN (non-module version) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Inline 3D visualization script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('careerVisualization');
+            const fallback = document.getElementById('careerFallback');
+
+            if (!canvas || typeof THREE === 'undefined') {
+                if (fallback) fallback.style.display = 'flex';
+                return;
+            }
+
+            let renderer, scene, camera, mainGroup;
+            let animationId = null;
+
+            try {
+                renderer = new THREE.WebGLRenderer({ 
+                    canvas, 
+                    antialias: true, 
+                    alpha: true,
+                    powerPreference: "high-performance"
+                });
+            } catch (err) {
+                console.warn('WebGL not available', err);
+                if (fallback) fallback.style.display = 'flex';
+                return;
+            }
+
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            renderer.setClearColor(0x000000, 0);
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(40, 1, 0.1, 1000);
+            camera.position.set(0, 8, 65);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
+            keyLight.position.set(30, 40, 40);
+            scene.add(keyLight);
+
+            const fillLight = new THREE.DirectionalLight(0x4a9eff, 0.3);
+            fillLight.position.set(-20, 10, -30);
+            scene.add(fillLight);
+
+            const rimLight = new THREE.DirectionalLight(0x00ff88, 0.4);
+            rimLight.position.set(0, -20, -40);
+            scene.add(rimLight);
+
+            mainGroup = new THREE.Group();
+            scene.add(mainGroup);
+
+            const colors = {
+                primary: 0x00ff88,
+                secondary: 0x0099ff,
+                tertiary: 0x6b5ce7,
+                glow: 0x00ffaa
+            };
+
+            // Core sphere
+            const coreGeometry = new THREE.IcosahedronGeometry(6, 3);
+            const coreMaterial = new THREE.MeshStandardMaterial({
+                color: colors.primary,
+                metalness: 0.9,
+                roughness: 0.1,
+                emissive: colors.glow,
+                emissiveIntensity: 0.4
+            });
+            const coreSphere = new THREE.Mesh(coreGeometry, coreMaterial);
+            mainGroup.add(coreSphere);
+
+            // Wireframe
+            const wireframeGeometry = new THREE.IcosahedronGeometry(6.2, 2);
+            const wireframeMaterial = new THREE.MeshBasicMaterial({
+                color: colors.primary,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.3
+            });
+            const wireframeMesh = new THREE.Mesh(wireframeGeometry, wireframeMaterial);
+            mainGroup.add(wireframeMesh);
+
+            // Orbital rings
+            const rings = [];
+            const ringConfigs = [
+                { radius: 15, tilt: [0.5, 0, 0], speed: 0.3, color: colors.primary },
+                { radius: 20, tilt: [0, 0.4, 0.3], speed: -0.4, color: colors.secondary },
+                { radius: 25, tilt: [0.3, 0.5, 0], speed: 0.35, color: colors.tertiary }
+            ];
+
+            ringConfigs.forEach((config) => {
+                const points = [];
+                const segments = 64;
+                
+                for (let i = 0; i <= segments; i++) {
+                    const angle = (i / segments) * Math.PI * 2;
+                    points.push(
+                        new THREE.Vector3(
+                            Math.cos(angle) * config.radius,
+                            0,
+                            Math.sin(angle) * config.radius
+                        )
+                    );
+                }
+
+                const ringGeometry = new THREE.BufferGeometry().setFromPoints(points);
+                const ringMaterial = new THREE.LineBasicMaterial({
+                    color: config.color,
+                    transparent: true,
+                    opacity: 0.6
+                });
+
+                const ring = new THREE.Line(ringGeometry, ringMaterial);
+                ring.rotation.set(...config.tilt);
+                mainGroup.add(ring);
+                rings.push({ mesh: ring, speed: config.speed });
+            });
+
+            // Data nodes
+            const dataNodes = [];
+            const nodeCount = 8;
+            const nodeGeometry = new THREE.SphereGeometry(0.8, 16, 16);
+
+            for (let i = 0; i < nodeCount; i++) {
+                const nodeMaterial = new THREE.MeshStandardMaterial({
+                    color: i % 2 === 0 ? colors.secondary : colors.tertiary,
+                    metalness: 0.8,
+                    roughness: 0.2,
+                    emissive: i % 2 === 0 ? colors.secondary : colors.tertiary,
+                    emissiveIntensity: 0.5
+                });
+
+                const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
+                const angle = (i / nodeCount) * Math.PI * 2;
+                const radius = 18 + (i % 3) * 4;
+                
+                mainGroup.add(node);
+                dataNodes.push({
+                    mesh: node,
+                    angle: angle,
+                    radius: radius,
+                    speed: 0.5 + (i * 0.1),
+                    offset: i * 0.4
+                });
+            }
+
+            // Particles
+            const particleCount = 150;
+            const particleGeometry = new THREE.BufferGeometry();
+            const particlePositions = [];
+
+            for (let i = 0; i < particleCount; i++) {
+                const radius = 35 + Math.random() * 25;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.random() * Math.PI;
+
+                particlePositions.push(
+                    radius * Math.sin(phi) * Math.cos(theta),
+                    radius * Math.sin(phi) * Math.sin(theta),
+                    radius * Math.cos(phi)
+                );
+            }
+
+            particleGeometry.setAttribute('position', 
+                new THREE.Float32BufferAttribute(particlePositions, 3)
+            );
+
+            const particleMaterial = new THREE.PointsMaterial({
+                color: colors.primary,
+                size: 0.4,
+                transparent: true,
+                opacity: 0.6,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particles = new THREE.Points(particleGeometry, particleMaterial);
+            mainGroup.add(particles);
+
+            // Grid - removed to eliminate box container appearance
+
+            // Resize handler
+            const handleResize = () => {
+                const width = canvas.clientWidth || 300;
+                const height = canvas.clientHeight || 300;
+                
+                renderer.setSize(width, height, false);
+                camera.aspect = width / height;
+                
+                if (width < 480) {
+                    camera.fov = 50;
+                    camera.position.z = 80;
+                } else if (width < 768) {
+                    camera.fov = 45;
+                    camera.position.z = 70;
+                } else {
+                    camera.fov = 40;
+                    camera.position.z = 65;
+                }
+                
+                camera.updateProjectionMatrix();
+                if (fallback) fallback.style.display = 'none';
+            };
+
+            window.addEventListener('resize', handleResize);
+            handleResize();
+
+            // Animation
+            const clock = new THREE.Clock();
+
+            function animate() {
+                animationId = requestAnimationFrame(animate);
+                const elapsed = clock.getElapsedTime();
+
+                mainGroup.rotation.y = elapsed * 0.08;
+
+                const pulse = 1 + Math.sin(elapsed * 1.5) * 0.04;
+                coreSphere.scale.set(pulse, pulse, pulse);
+
+                wireframeMesh.rotation.x = elapsed * 0.2;
+                wireframeMesh.rotation.y = elapsed * 0.3;
+
+                rings.forEach(ring => {
+                    ring.mesh.rotation.y += ring.speed * 0.01;
+                });
+
+                dataNodes.forEach(node => {
+                    const time = elapsed * node.speed + node.offset;
+                    node.mesh.position.x = Math.cos(time) * node.radius;
+                    node.mesh.position.y = Math.sin(time * 0.7) * 6;
+                    node.mesh.position.z = Math.sin(time) * node.radius;
+
+                    const scale = 1 + Math.sin(elapsed * 2 + node.offset) * 0.15;
+                    node.mesh.scale.set(scale, scale, scale);
+                });
+
+                particles.rotation.y = elapsed * 0.05;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Email form
+            const emailSignup = document.getElementById('emailSignup');
+            if (emailSignup) {
+                emailSignup.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const emailInput = emailSignup.querySelector('.email-input');
+                    const email = emailInput.value.trim();
+
+                    if (email && email.includes('@')) {
+                        alert(`Thanks for your interest! We'll notify ${email} when positions become available.`);
+                        emailInput.value = '';
+                    }
+                });
+            }
+
+            // Scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            // Observe all fade-up elements
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            
+            // Observe process steps separately for stagger effect
+            document.querySelectorAll('.process-step').forEach(el => observer.observe(el));
+
+            // Benefits Carousel
+            const carousel = document.getElementById('benefitsCarousel');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            const progressBar = document.querySelector('.carousel-progress-bar');
+            
+            if (carousel) {
+                const slides = carousel.querySelectorAll('.benefit-slide');
+                let currentSlide = 0;
+                let autoplayInterval;
+                const autoplayDelay = 5000;
+
+                // Create dots
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.classList.add('carousel-dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.setAttribute('aria-label', `Go to benefit ${index + 1}`);
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+                function updateCarousel() {
+                    slides.forEach((slide, index) => {
+                        slide.classList.remove('active');
+                        if (index === currentSlide) {
+                            slide.classList.add('active');
+                        }
+                    });
+
+                    dots.forEach((dot, index) => {
+                        dot.classList.remove('active');
+                        if (index === currentSlide) {
+                            dot.classList.add('active');
+                        }
+                    });
+
+                    // Update progress bar
+                    const progress = ((currentSlide + 1) / slides.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+
+                function goToSlide(index) {
+                    currentSlide = index;
+                    updateCarousel();
+                    resetAutoplay();
+                }
+
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    updateCarousel();
+                }
+
+                function prevSlide() {
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                    updateCarousel();
+                }
+
+                function startAutoplay() {
+                    autoplayInterval = setInterval(nextSlide, autoplayDelay);
+                }
+
+                function stopAutoplay() {
+                    if (autoplayInterval) {
+                        clearInterval(autoplayInterval);
+                    }
+                }
+
+                function resetAutoplay() {
+                    stopAutoplay();
+                    startAutoplay();
+                }
+
+                // Event listeners
+                if (nextBtn) nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetAutoplay();
+                });
+
+                if (prevBtn) prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetAutoplay();
+                });
+
+                // Keyboard navigation
+                carousel.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                        resetAutoplay();
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide();
+                        resetAutoplay();
+                    }
+                });
+
+                // Pause on hover
+                carousel.addEventListener('mouseenter', stopAutoplay);
+                carousel.addEventListener('mouseleave', startAutoplay);
+
+                // Touch support
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                carousel.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                    stopAutoplay();
+                });
+
+                carousel.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                    startAutoplay();
+                });
+
+                function handleSwipe() {
+                    if (touchEndX < touchStartX - 50) nextSlide();
+                    if (touchEndX > touchStartX + 50) prevSlide();
+                }
+
+                // Start autoplay
+                startAutoplay();
+                updateCarousel();
+            }
+        });
+    </script>
 </body>
 </html>
